@@ -1,7 +1,7 @@
 from django.shortcuts import render
+from .models import Student
 
 # Create your views here.
 def list_student(request):
-    return render(request,'base.html')
-
-
+    student = Student.objects.all()
+    return render(request, "list_student.html", {"student": student})
