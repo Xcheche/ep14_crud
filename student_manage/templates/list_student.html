@@ -4,7 +4,7 @@
 
 <table class="table table-hover table-striped table-dark">
   <thead>
-    <tr  class="table-active">
+    <tr class="table-active">
       <th scope="col">ID</th>
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
@@ -16,28 +16,53 @@
     </tr>
   </thead>
   <tbody>
-    
-{% for student in student %}
+    {% for student in student %}
     <tr>
-      <th scope="row">{{student.id}}</th>
-      <td>{{student.first_name}}</td>
-      <td>{{student.last_name}}</td>
-      <td>{{student.email}}</td>
-      <td>{{student.phone}}</td>
-      <td>{{student.branch}}</td>
-      <td><img src="{{student.photo.url}}" width="30px" height="30px" alt="sdt"></td>
+      <th scope="row">{{ student.id }}</th>
+      <td>{{ student.first_name }}</td>
+      <td>{{ student.last_name }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.phone }}</td>
+      <td>{{ student.branch }}</td>
+      <td><img src="{{ student.photo.url }}" width="30px" height="30px" alt="sdt" class="rounded-circle"></td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm">View</button>
-        <button type="button" class="btn btn-primary btn-sm">Edit</button>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ViewModal{{ student.id }}">
+          <i class="bi bi-info-circle-fill"></i> View
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="ViewModal{{ student.id }}" tabindex="-1" role="dialog" aria-labelledby="ViewModalLabel{{ student.id }}" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ViewModalLabel{{ student.id }}">Student Name: {{ student.first_name }} {{ student.last_name }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body text-light bg-dark ">
+                <!-- Add student details here -->
+                <p>Student Name: {{ student.first_name }} {{ student.last_name }}</p>
+                <p>Email: {{ student.email }}</p>
+                <p>Phone: {{ student.phone }}</p>
+                <p>Branch: {{ student.branch }}</p>
+                <img src="{{ student.photo.url }}" width="100px" height="100px" alt="student photo" class="rounded-circle">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+           
+              </div>
+            </div>
+          </div>
+        </div>
+<!-- End of Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-sm">Edit</button>
         <button type="button" class="btn btn-primary btn-sm">Delete</button>
-    </td>
+      </td>
     </tr>
-
+    {% endfor %}
   </tbody>
-      {% endfor %}
 </table>
-
-
-
 
 {% endblock %}
