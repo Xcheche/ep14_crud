@@ -11,7 +11,7 @@
       <th scope="col">Email Address</th>
       <th scope="col">Phone Number</th>
       <th scope="col">Branch</th>
-      <th scope="col">Photo</th>
+
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -24,7 +24,7 @@
       <td>{{ student.email }}</td>
       <td>{{ student.phone }}</td>
       <td>{{ student.branch }}</td>
-      <td><img src="{{ student.photo.url }}" width="30px" height="30px" alt="sdt" class="rounded-circle"></td>
+
       <td>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ViewModal{{ student.id }}">
@@ -47,7 +47,7 @@
                 <p>Email: {{ student.email }}</p>
                 <p>Phone: {{ student.phone }}</p>
                 <p>Branch: {{ student.branch }}</p>
-                <img src="{{ student.photo.url }}" width="100px" height="100px" alt="student photo" class="rounded-circle">
+               
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
@@ -57,7 +57,7 @@
           </div>
         </div>
 <!-- End of Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-sm">Edit</button>
+     <a href="{% url 'update' student.pk %}" class="btn btn-primary btn-sm">Update</a> 
         <button type="button" class="btn btn-primary btn-sm">Delete</button>
       </td>
     </tr>
